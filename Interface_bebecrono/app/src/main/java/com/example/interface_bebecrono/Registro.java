@@ -8,23 +8,36 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.EdgeToEdge;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registro extends AppCompatActivity {
-    EditText editTextBirthDate, editTextBirthTime, editTextGender, editTextWeight, editTextHeight;
+    EditText editTextBabyName, editTextBirthDate, editTextBirthTime, editTextGender, editTextWeight, editTextHeight;
     RadioGroup radioGroupBirthType;
+    FirebaseFirestore mFirestore;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registro);
+        mFirestore =FirebaseFirestore.getInstance();
+
+        editTextBabyName = findViewById(R.id.editTextBabyName);
         editTextBirthDate = findViewById(R.id.editTextBirthDate);
         editTextBirthTime = findViewById(R.id.editTextBirthTime);
         editTextGender = findViewById(R.id.editTextGender);
@@ -44,9 +57,22 @@ public class Registro extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Al hacer clic en el botón Guardar, inicia la actividad CuartaActivity
-                Intent intent = new Intent(Registro.this, aplicativos.class);
-                startActivity(intent);
+                // Obtener los detalles del bebé ingresados por el usuario
+                String babyName = editTextBabyName.getText().toString().trim();
+                String birthDate = editTextBirthDate.getText().toString().trim();
+                String birthTime = editTextBirthTime.getText().toString().trim();
+                String gender = editTextGender.getText().toString().trim();
+                int weight = getWeightInGrams();
+                int height = getHeightInCentimeters();
+
+                // Realizar la validación de los campos (aquí puedes agregar tus propias validaciones)
+                if (babyName.isEmpty() || birthDate.isEmpty() || birthTime.isEmpty() || gender.isEmpty()) {
+                    // Si falta algún campo obligatorio, mostrar un mensaje de error
+                    Toast.makeText(Registro.this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Si todos los campos están completos, guardar los detalles del bebé
+                    saveBabyDetails(babyName, birthDate, birthTime, gender, weight, height);
+                }
             }
         });
     }
@@ -110,20 +136,26 @@ public class Registro extends AppCompatActivity {
         }
         return 0; // Talla predeterminada si no se ingresa ningún valor
     }
-    public void saveBabyDetails(View view) {
-        int selectedId = radioGroupBirthType.getCheckedRadioButtonId();
-
-        if (selectedId == -1) {
-            // No se ha seleccionado ninguna opción
-            Toast.makeText(this, "Please select birth type", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        RadioButton radioButtonSelected = findViewById(selectedId);
-
-        if (radioButtonSelected != null) {
-            String selectedBirthType = radioButtonSelected.getText().toString();
-            // Aquí puedes usar el valor de selectedBirthType según tus necesidades
-        }
+    private void saveBabyDetails(String babyName, String birthDate, String birthTime, String gender, int weight, int height) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("Nombre del bebe", babyName);
+        map.put("Fecha de nacimiento", birthDate);
+        map.put("hora de nacimiento", birthTime);
+        map.put("Genero", gender);
+        map.put("Peso", weight);
+        map.put("Talla", height);
+        mFirestore.collection("bebe").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                startActivity(new Intent(Registro.this, aplicativos.class));
+                Toast.makeText(getApplicationContext(),"Registro exitoso del bebe",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"Error al ingresar",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

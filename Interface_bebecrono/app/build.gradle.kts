@@ -1,6 +1,8 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
+
 
 android {
     namespace = "com.example.interface_bebecrono"
@@ -29,11 +31,17 @@ android {
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

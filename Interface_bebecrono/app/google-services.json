@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770701783457",
+    "project_id": "android-c72d4",
+    "storage_bucket": "android-c72d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770701783457:android:d6dcdf4a1b9deed415dbe0",
+        "android_client_info": {
+          "package_name": "com.example.interface_bebecrono"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi38EBN-iL6ww3YmOS4CXdBgn98DgEV_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
