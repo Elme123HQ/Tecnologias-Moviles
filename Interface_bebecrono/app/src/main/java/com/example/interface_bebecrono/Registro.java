@@ -62,8 +62,9 @@ public class Registro extends AppCompatActivity {
                 String birthDate = editTextBirthDate.getText().toString().trim();
                 String birthTime = editTextBirthTime.getText().toString().trim();
                 String gender = editTextGender.getText().toString().trim();
-                int weight = getWeightInGrams();
+                double weight = getWeightInGrams();
                 int height = getHeightInCentimeters();
+
 
                 // Realizar la validación de los campos (aquí puedes agregar tus propias validaciones)
                 if (babyName.isEmpty() || birthDate.isEmpty() || birthTime.isEmpty() || gender.isEmpty()) {
@@ -85,11 +86,27 @@ public class Registro extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view1, year1, monthOfYear, dayOfMonth) -> {
                     // Se llama cuando el usuario selecciona una fecha
-                    String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
-                    editTextBirthDate.setText(selectedDate);
+                    Calendar selectedDate = Calendar.getInstance();
+                    selectedDate.set(year1, monthOfYear, dayOfMonth);
+
+                    // Obtener la fecha actual
+                    Calendar currentDate = Calendar.getInstance();
+
+                    if (selectedDate.after(currentDate)) {
+                        // Si la fecha seleccionada es futura, mostrar un mensaje de error
+                        Toast.makeText(Registro.this, "No se puede seleccionar una fecha futura", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Si la fecha seleccionada es válida, actualizar el campo de texto
+                        String selectedDateStr = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
+                        editTextBirthDate.setText(selectedDateStr);
+                    }
                 }, year, month, day);
+
+        // Limitar la selección de fecha al día actual o anterior
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
+
     public void showTimePickerDialog(View view) {
         final Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -114,13 +131,15 @@ public class Registro extends AppCompatActivity {
                 });
         builder.show();
     }
-    private int getWeightInGrams() {
+    private double getWeightInGrams() {
         String weightText = editTextWeight.getText().toString().trim();
         if (!weightText.isEmpty()) {
             try {
-                return Integer.parseInt(weightText);
+                double weightValue = Double.parseDouble(weightText);
+                // Aquí puedes realizar la conversión de unidades si es necesario
+                return weightValue;
             } catch (NumberFormatException e) {
-                // Error al convertir a número, manejar según sea necesario
+                // Manejar el error si no se puede convertir a número
             }
         }
         return 0; // Peso predeterminado si no se ingresa ningún valor
@@ -136,18 +155,21 @@ public class Registro extends AppCompatActivity {
         }
         return 0; // Talla predeterminada si no se ingresa ningún valor
     }
-    private void saveBabyDetails(String babyName, String birthDate, String birthTime, String gender, int weight, int height) {
+    private void saveBabyDetails(String babyName, String birthDate, String birthTime, String gender, double weight, int height) {
+        String weightWithUnit = weight + " gramos";
         Map<String,Object> map = new HashMap<>();
         map.put("Nombre del bebe", babyName);
         map.put("Fecha de nacimiento", birthDate);
         map.put("hora de nacimiento", birthTime);
         map.put("Genero", gender);
-        map.put("Peso", weight);
+        map.put("Peso", weightWithUnit);
         map.put("Talla", height);
         mFirestore.collection("bebe").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                startActivity(new Intent(Registro.this, aplicativos.class));
+                Intent intent = new Intent(Registro.this, aplicativos.class);
+                intent.putExtra("BABY_NAME", babyName);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Registro exitoso del bebe",Toast.LENGTH_SHORT).show();
                 finish();
             }

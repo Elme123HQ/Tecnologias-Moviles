@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,6 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Interface_bebecrono"
         tools:targetApi="31">
+        <activity
+            android:name=".Alimentos"
+            android:exported="false" />
+        <activity
+            android:name=".Agregarcitas"
+            android:exported="false" />
+        <activity
+            android:name=".citas"
+            android:exported="false" />
+        <activity
+            android:name=".Panal"
+            android:exported="false" />
+        <activity
+            android:name=".sueno"
+            android:exported="false" />
+        <activity
+            android:name=".Historial"
+            android:exported="false" />
         <activity
             android:name=".loginregister"
             android:exported="false" />
