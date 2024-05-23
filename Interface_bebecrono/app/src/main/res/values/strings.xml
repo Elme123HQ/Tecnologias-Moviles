@@ -6,4 +6,8 @@
         <item>Medio</item>
         <item>Lleno</item>
     </string-array>
+    <string-array name="opciones_fuente_alimento">
+        <item>Formula</item>
+        <item>Seno</item>
+    </string-array>
 </resources>

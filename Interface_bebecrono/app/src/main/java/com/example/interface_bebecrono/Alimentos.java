@@ -1,5 +1,6 @@
 package com.example.interface_bebecrono;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,9 +86,11 @@ public class Alimentos extends AppCompatActivity {
         foodData.put("pecho", pecho);
         foodData.put("source", source);
 
-        mFirestore.collection("foodRecords").add(foodData)
+        mFirestore.collection("Registro de alimentos").add(foodData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(Alimentos.this, "Registro de alimentos guardado", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(Alimentos.this, aplicativos.class));
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(Alimentos.this, "Error al guardar el registro", Toast.LENGTH_SHORT).show();

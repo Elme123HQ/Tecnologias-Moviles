@@ -281,7 +281,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:background="@android:drawable/edit_text" />
+        android:background="@android:drawable/edit_text"
+        android:entries="@array/opciones_fuente_alimento"/>
 
     <!-- Botón Guardar -->
     <Button

@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_agregarcita"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Agregarcitas">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="top">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Cita"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cita"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextCita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Agregar Cita"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacto"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextContacto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Agregar Contacto"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Agregar Ubicación"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de la Cita"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Agregar Fecha"
+        android:inputType="text"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nota"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextNota"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="Agregar Nota"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/buttonRegisterCita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Cita"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

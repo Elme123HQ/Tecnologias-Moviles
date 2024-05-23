@@ -103,13 +103,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imagenotro"
+        android:id="@+id/imagengrafica"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_marginTop="44dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/otro"
+        android:src="@drawable/grafica"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineRight"
@@ -118,20 +118,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Otro"
+        android:text="Grafica"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@id/imagenotro" />
+        app:layout_constraintTop_toBottomOf="@id/imagengrafica" />
 
     <ImageView
-        android:id="@+id/imagepeso"
+        android:id="@+id/imagecita"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_marginTop="44dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/peso"
+        android:src="@drawable/cita"
         app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,11 +141,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Peso"
+        android:text="Agregar Cita"
         app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagepeso" />
+        app:layout_constraintTop_toBottomOf="@id/imagecita" />
 
     <TextView
         android:id="@+id/textView3"

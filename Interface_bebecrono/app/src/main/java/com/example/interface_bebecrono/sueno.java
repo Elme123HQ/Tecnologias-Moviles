@@ -1,5 +1,6 @@
 package com.example.interface_bebecrono;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,9 +62,11 @@ public class sueno extends AppCompatActivity {
         sleepData.put("startTime", startTime);
         sleepData.put("endTime", endTime);
 
-        mFirestore.collection("sleepRecords").add(sleepData)
+        mFirestore.collection("Registro de sueño").add(sleepData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(sueno.this, "Registro de sueño guardado", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(sueno.this, aplicativos.class));
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(sueno.this, "Error al guardar el registro", Toast.LENGTH_SHORT).show();

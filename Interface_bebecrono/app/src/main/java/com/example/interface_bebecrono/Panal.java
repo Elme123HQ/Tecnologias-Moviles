@@ -1,5 +1,6 @@
 package com.example.interface_bebecrono;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -83,9 +84,11 @@ public class Panal extends AppCompatActivity {
         panalData.put("detalle", detalle);
         panalData.put("nota", nota);
 
-        mFirestore.collection("panalRecords").add(panalData)
+        mFirestore.collection("Registro de pañal").add(panalData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(Panal.this, "Registro de pañal guardado", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(Panal.this, aplicativos.class));
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(Panal.this, "Error al guardar el registro", Toast.LENGTH_SHORT).show();

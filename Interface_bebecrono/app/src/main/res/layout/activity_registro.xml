@@ -94,7 +94,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Genero"
+        android:text="Género"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
         android:id="@+id/editTextGender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Genero"
+        android:hint="Género"
         android:focusable="false"
         android:onClick="showGenderSelectionDialog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +174,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Typo de Nacimiento"
+        android:text="Tipo de Nacimiento"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +196,7 @@
             android:id="@+id/radioButtonCesarean"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cesarean" />
+            android:text="Cesárea" />
 
         <RadioButton
             android:id="@+id/radioButtonNatural"

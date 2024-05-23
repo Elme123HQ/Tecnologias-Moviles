@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Interface_bebecrono"
         tools:targetApi="31">
         <activity
+            android:name=".Consejo"
+            android:exported="false" />
+        <activity
             android:name=".Alimentos"
             android:exported="false" />
         <activity

@@ -42,12 +42,28 @@ public class aplicativos extends AppCompatActivity {
             Intent intent = new Intent(aplicativos.this, Alimentos.class);
             startActivity(intent);
         });
-        // Referenciar el ImageView de "Alimentos"
-        ImageView iamgenpanal = findViewById(R.id.imagepañal);
+        // Referenciar el ImageView de "Pañales"
+        ImageView imagenpanal = findViewById(R.id.imagepañal);
         // Establecer OnClickListener para el ImageView de "Alimentos"
-        iamgenpanal.setOnClickListener(v -> {
+        imagenpanal.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "Alimentos"
             Intent intent = new Intent(aplicativos.this, Panal.class);
+            startActivity(intent);
+        });
+        // Referenciar el ImageView de "AgregarCita"
+        ImageView imagenagregarcita = findViewById(R.id.imagecita);
+        // Establecer OnClickListener para el ImageView de "Alimentos"
+        imagenagregarcita.setOnClickListener(v -> {
+            // Crear un Intent para iniciar la actividad "Alimentos"
+            Intent intent = new Intent(aplicativos.this, Agregarcitas.class);
+            startActivity(intent);
+        });
+        // Referenciar el ImageView de "AgregarCita"
+        ImageView imagenconsejo = findViewById(R.id.imageconsejo);
+        // Establecer OnClickListener para el ImageView de "Alimentos"
+        imagenconsejo.setOnClickListener(v -> {
+            // Crear un Intent para iniciar la actividad "Alimentos"
+            Intent intent = new Intent(aplicativos.this, Consejo.class);
             startActivity(intent);
         });
     }
