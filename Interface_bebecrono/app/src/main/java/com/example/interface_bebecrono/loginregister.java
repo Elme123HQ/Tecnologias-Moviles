@@ -36,7 +36,6 @@ public class loginregister extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        // Encontrar las vistas por sus identificadores
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextAge = findViewById(R.id.editTextAge);
@@ -45,7 +44,6 @@ public class loginregister extends AppCompatActivity {
         editTextNewPassword = findViewById(R.id.editTextNewPassword);
         buttonCreateAccount = findViewById(R.id.buttonCreateAccount);
 
-        // Configurar OnClickListener para el botón de crear cuenta
         buttonCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,50 +53,87 @@ public class loginregister extends AppCompatActivity {
                 String dni = editTextDNI.getText().toString().trim();
                 String correou = editTextNewCorreo.getText().toString().trim();
                 String password = editTextNewPassword.getText().toString().trim();
-                if (firstName.isEmpty() && lastName.isEmpty() && age.isEmpty() && dni.isEmpty() && correou.isEmpty() && password.isEmpty()){
-                    Toast.makeText(loginregister.this,"Complete los datos",Toast.LENGTH_SHORT).show();
-                }else{
-                    registerUser(firstName,lastName,age,dni,correou,password);
+
+                if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || dni.isEmpty() || correou.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(loginregister.this, "Complete los datos", Toast.LENGTH_SHORT).show();
+                } else if (!isValidName(firstName)) {
+                    Toast.makeText(loginregister.this, "Nombre inválido. Solo letras y espacios son permitidos.", Toast.LENGTH_SHORT).show();
+                } else if (!isValidName(lastName)) {
+                    Toast.makeText(loginregister.this, "Apellido inválido. Solo letras y espacios son permitidos.", Toast.LENGTH_SHORT).show();
+                } else if (!isValidDNI(dni)) {
+                    Toast.makeText(loginregister.this, "DNI inválido. Debe contener exactamente 8 números.", Toast.LENGTH_SHORT).show();
+                } else if (!isValidEmail(correou)) {
+                    Toast.makeText(loginregister.this, "Correo inválido. Debe seguir el formato usuario@dominio.com.", Toast.LENGTH_SHORT).show();
+                } else if (!isValidPassword(password)) {
+                    Toast.makeText(loginregister.this, "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra y un carácter especial", Toast.LENGTH_SHORT).show();
+                } else {
+                    registerUser(firstName, lastName, age, dni, correou, password);
                 }
             }
         });
     }
 
+    private boolean isValidName(String name) {
+        return name.matches("[a-zA-Z ]+");
+    }
+
+    private boolean isValidDNI(String dni) {
+        return dni.matches("\\d{8}");
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+    }
+
+    private boolean isValidPassword(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+        if (!password.matches(".*[!_@#$%^&*+=?-].*")) {
+            return false;
+        }
+        if (!password.matches(".*\\d.*")) {
+            return false;
+        }
+        if (!password.matches(".*[a-zA-Z].*")) {
+            return false;
+        }
+        return true;
+    }
+
     private void registerUser(String firstName, String lastName, String age, String dni, String correou, String password) {
-        mAuth.createUserWithEmailAndPassword(correou,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(correou, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 String id = mAuth.getCurrentUser().getUid();
                 Map<String, Object> map = new HashMap<>();
-                map.put("id",id);
-                map.put("Nombre",firstName);
-                map.put("Apellido",lastName);
-                map.put("Edad",age);
-                map.put("DNI",dni);
-                map.put("Correo",correou);
-                map.put("contraseña",password);
+                map.put("id", id);
+                map.put("Nombre", firstName);
+                map.put("Apellido", lastName);
+                map.put("Edad", age);
+                map.put("DNI", dni);
+                map.put("Correo", correou);
+                map.put("contraseña", password);
 
                 mFirestore.collection("user").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         finish();
                         startActivity(new Intent(loginregister.this, MainActivity.class));
-                        Toast.makeText(loginregister.this,"Usuario registrado con exito",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginregister.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(loginregister.this,"error al guardar",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginregister.this, "Error al guardar", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(loginregister.this,"Error al registrar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(loginregister.this, "Error al registrar", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }
-
