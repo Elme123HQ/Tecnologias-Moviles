@@ -70,12 +70,18 @@ public class Registro extends AppCompatActivity {
                 if (babyName.isEmpty() || birthDate.isEmpty() || birthTime.isEmpty() || gender.isEmpty()) {
                     // Si falta algún campo obligatorio, mostrar un mensaje de error
                     Toast.makeText(Registro.this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+                } else if (!isNameValid(babyName)) {
+                    // Si el nombre no es válido, mostrar un mensaje de error
+                    Toast.makeText(Registro.this, "El nombre solo debe contener letras y espacios", Toast.LENGTH_SHORT).show();
                 } else {
                     // Si todos los campos están completos, guardar los detalles del bebé
                     saveBabyDetails(babyName, birthDate, birthTime, gender, weight, height);
                 }
             }
         });
+    }
+    private boolean isNameValid(String name) {
+        return name.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+");
     }
     public void showDatePickerDialog(View view) {
         final Calendar calendar = Calendar.getInstance();
@@ -157,13 +163,14 @@ public class Registro extends AppCompatActivity {
     }
     private void saveBabyDetails(String babyName, String birthDate, String birthTime, String gender, double weight, int height) {
         String weightWithUnit = weight + " gramos";
+        String heightcm = height + " centimetros";
         Map<String,Object> map = new HashMap<>();
         map.put("Nombre del bebe", babyName);
         map.put("Fecha de nacimiento", birthDate);
         map.put("hora de nacimiento", birthTime);
         map.put("Genero", gender);
         map.put("Peso", weightWithUnit);
-        map.put("Talla", height);
+        map.put("Talla", heightcm);
         mFirestore.collection("bebe").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

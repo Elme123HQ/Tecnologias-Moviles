@@ -1,10 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_panal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Panal">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pañal"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <!-- Imágenes de opciones de pañal -->
+
+    <ImageView
+        android:id="@+id/imageViewSucio"
+        android:layout_width="106dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onOptionSelected"
+        android:src="@drawable/sucio"
+        android:tag="sucio" />
+
+    <ImageView
+        android:id="@+id/imageViewMojado"
+        android:layout_width="99dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onOptionSelected"
+        android:src="@drawable/mojado"
+        android:tag="mojado" />
+
+    <ImageView
+        android:id="@+id/imageViewAmbos"
+        android:layout_width="118dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onOptionSelected"
+        android:src="@drawable/ambos"
+        android:tag="ambos" />
+    <TextView
+        android:id="@+id/textViewFechayHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha y Hora"
+        android:layout_marginTop="16dp"/>
+    <!-- TextView para mostrar fecha y hora -->
+    <TextView
+        android:id="@+id/textViewFechaHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  "
+        android:layout_marginTop="16dp"/>
+
+    <!-- TextView para detalle -->
+    <TextView
+        android:id="@+id/textViewDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalle"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Lista de opciones -->
+    <Spinner
+        android:id="@+id/spinnerOpciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:entries="@array/opciones_panal"/>
+
+    <!-- Espacio para nota -->
+    <EditText
+        android:id="@+id/editTextNota"
+        android:layout_width="387dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:gravity="top"
+        android:hint="Nota"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical" />
+    <!-- Botón para registrar los datos -->
+    <Button
+        android:id="@+id/buttonRegisterPanal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Pañal"
+        android:layout_marginTop="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

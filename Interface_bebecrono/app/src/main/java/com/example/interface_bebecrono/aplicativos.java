@@ -27,7 +27,6 @@ public class aplicativos extends AppCompatActivity {
 
         // Referenciar el ImageView de "Sueño"
         ImageView imageViewSleep = findViewById(R.id.imagesueño);
-
         // Establecer OnClickListener para el ImageView de "Sueño"
         imageViewSleep.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "sueno"
@@ -35,6 +34,22 @@ public class aplicativos extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        // Referenciar el ImageView de "Alimentos"
+        ImageView imageViewAlimento = findViewById(R.id.imageViewFood);
+        // Establecer OnClickListener para el ImageView de "Alimentos"
+        imageViewAlimento.setOnClickListener(v -> {
+            // Crear un Intent para iniciar la actividad "Alimentos"
+            Intent intent = new Intent(aplicativos.this, Alimentos.class);
+            startActivity(intent);
+        });
+        // Referenciar el ImageView de "Alimentos"
+        ImageView iamgenpanal = findViewById(R.id.imagepañal);
+        // Establecer OnClickListener para el ImageView de "Alimentos"
+        iamgenpanal.setOnClickListener(v -> {
+            // Crear un Intent para iniciar la actividad "Alimentos"
+            Intent intent = new Intent(aplicativos.this, Panal.class);
+            startActivity(intent);
+        });
     }
 }
+

@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Interface_bebecrono</string>
     <string name="default_web_client_id">YOUR_CLIENT_ID</string>
-
+    <string-array name="opciones_panal">
+        <item>Poco</item>
+        <item>Medio</item>
+        <item>Lleno</item>
+    </string-array>
 </resources>

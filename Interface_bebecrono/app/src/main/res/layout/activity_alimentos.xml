@@ -1,10 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:id="@+id/main_scroll_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Alimentos">
+    android:padding="16dp"
+    android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alimentos"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+    <!-- Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabGravity="fill">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_pecho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pecho" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_solido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sólido" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_biberon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Biberón" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- Detalle de comida -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalle de comida"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingresar"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text" />
+
+    <!-- Pecho -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pecho"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupPecho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/radio_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I" />
+        <RadioButton
+            android:id="@+id/radio_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D" />
+    </RadioGroup>
+
+    <!-- Sólido -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sólido"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+
+    <!-- Repetir para cada tipo de sólido -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fruta"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextFruta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Granos"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextGranos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+    <!-- vegetales -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vegetales"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+
+            android:id="@+id/editTextVegetales"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+
+    <!-- lacteos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lacteos"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextLacteos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+    <!-- Carne -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Carne"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextCarne"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+    <!-- Total -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/editTextTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="0 gramos"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
+    </LinearLayout>
+    <!-- Biberón -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Biberón"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextBiberon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="0.0ml"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text" />
+
+    <!-- Fuente -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fuente"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinner_source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text" />
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/buttonSaveFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp" />
+</LinearLayout>
+</ScrollView>
+
