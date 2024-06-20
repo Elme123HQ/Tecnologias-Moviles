@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     EditText editTextUsername, editTextPassword;
-    Button buttonLogin, buttonGoogleLogin, buttonRegister;
+    Button buttonLogin, buttonGoogleLogin, buttonRegister, buttonForgotPassword;
     ImageView imageView;
 
     FirebaseAuth mAuth;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonGoogleLogin = findViewById(R.id.buttonGoogleLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
+        buttonForgotPassword = findViewById(R.id.buttonForgotPassword);  // Nuevo botón
         imageView = findViewById(R.id.imageView);
 
         // Configurar OnClickListener para el botón de inicio de sesión
@@ -85,6 +86,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurar OnClickListener para el botón de registro
         buttonRegister.setOnClickListener(v -> startRegisterActivity());
+
+        // Configurar OnClickListener para el botón de "Olvidé mi contraseña"
+        buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = editTextUsername.getText().toString().trim();
+                if (email.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Ingresar el correo", Toast.LENGTH_SHORT).show();
+                } else {
+                    resetPassword(email);
+                }
+            }
+        });
     }
 
     private void loginUser(String CorreoU, String passU) {
@@ -131,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
@@ -167,6 +180,20 @@ public class MainActivity extends AppCompatActivity {
     private void startRegisterActivity() {
         Intent intent = new Intent(this, loginregister.class);
         startActivity(intent);
+    }
+
+    private void resetPassword(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Correo de restablecimiento enviado", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error al enviar el correo de restablecimiento", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
 
