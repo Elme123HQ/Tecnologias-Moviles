@@ -31,6 +31,7 @@ public class aplicativos extends AppCompatActivity {
         imageViewSleep.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "sueno"
             Intent intent = new Intent(aplicativos.this, sueno.class);
+            intent.putExtra("BABY_NAME", babyName);
             startActivity(intent);
         });
 
@@ -40,6 +41,7 @@ public class aplicativos extends AppCompatActivity {
         imageViewAlimento.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "Alimentos"
             Intent intent = new Intent(aplicativos.this, Alimentos.class);
+            intent.putExtra("BABY_NAME", babyName);
             startActivity(intent);
         });
         // Referenciar el ImageView de "Pañales"
@@ -48,6 +50,7 @@ public class aplicativos extends AppCompatActivity {
         imagenpanal.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "Alimentos"
             Intent intent = new Intent(aplicativos.this, Panal.class);
+            intent.putExtra("BABY_NAME", babyName);
             startActivity(intent);
         });
         // Referenciar el ImageView de "AgregarCita"
@@ -56,6 +59,7 @@ public class aplicativos extends AppCompatActivity {
         imagenagregarcita.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "Alimentos"
             Intent intent = new Intent(aplicativos.this, Agregarcitas.class);
+            intent.putExtra("BABY_NAME", babyName);
             startActivity(intent);
         });
         // Referenciar el ImageView de "AgregarCita"
@@ -64,6 +68,7 @@ public class aplicativos extends AppCompatActivity {
         imagenconsejo.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad "Alimentos"
             Intent intent = new Intent(aplicativos.this, Consejo.class);
+            intent.putExtra("BABY_NAME", babyName);
             startActivity(intent);
         });
     }

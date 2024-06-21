@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -25,6 +27,8 @@ public class Agregarcitas extends AppCompatActivity {
     private EditText editTextNota;
     private Button buttonRegisterCita;
     private FirebaseFirestore mFirestore;
+    FirebaseAuth mAuth;
+    private String babyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class Agregarcitas extends AppCompatActivity {
 
         // Inicializar Firestore
         mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        babyName = getIntent().getStringExtra("BABY_NAME");
 
         // Manejo de insets para el diseño edge-to-edge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_agregarcita), (v, insets) -> {
@@ -84,7 +90,10 @@ public class Agregarcitas extends AppCompatActivity {
             return;
         }
 
+        String userId = mAuth.getCurrentUser().getUid();
+
         Map<String, String> citaData = new HashMap<>();
+        citaData.put("userId", userId);
         citaData.put("cita", cita);
         citaData.put("contacto", contacto);
         citaData.put("ubicacion", ubicacion);

@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -24,6 +25,8 @@ public class sueno extends AppCompatActivity {
     private EditText editTextEndTime;
     private Button buttonRegisterSleep;
     private FirebaseFirestore mFirestore;
+    FirebaseAuth mAuth;
+    private String babyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class sueno extends AppCompatActivity {
         buttonRegisterSleep = findViewById(R.id.buttonRegisterSleep);
 
         mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        babyName = getIntent().getStringExtra("BABY_NAME");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -57,7 +62,10 @@ public class sueno extends AppCompatActivity {
             return;
         }
 
+        String userId = mAuth.getCurrentUser().getUid();
+
         Map<String, String> sleepData = new HashMap<>();
+        sleepData.put("userId", userId);
         sleepData.put("duration", duration);
         sleepData.put("startTime", startTime);
         sleepData.put("endTime", endTime);

@@ -1,6 +1,9 @@
 package com.example.interface_bebecrono;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,6 +39,15 @@ public class ListaBebesActivity extends AppCompatActivity {
         listViewBebes.setAdapter(adapter);
 
         loadBabyList();
+        listViewBebes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedBabyName = listaBebes.get(position);
+                Intent intent = new Intent(ListaBebesActivity.this, aplicativos.class);
+                intent.putExtra("BABY_NAME", selectedBabyName);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadBabyList() {

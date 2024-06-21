@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +33,8 @@ public class Panal extends AppCompatActivity {
     private Button buttonRegisterPanal;
     private FirebaseFirestore mFirestore;
     private String tipoPanal = "";
+    FirebaseAuth mAuth;
+    private String babyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class Panal extends AppCompatActivity {
         buttonRegisterPanal = findViewById(R.id.buttonRegisterPanal);
 
         mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        babyName = getIntent().getStringExtra("BABY_NAME");
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_panal), (v, insets) -> {
@@ -78,7 +83,10 @@ public class Panal extends AppCompatActivity {
             return;
         }
 
+        String userId = mAuth.getCurrentUser().getUid();
+
         Map<String, String> panalData = new HashMap<>();
+        panalData.put("userId", userId);
         panalData.put("tipoPanal", tipoPanal);
         panalData.put("fechaHora", fechaHora);
         panalData.put("detalle", detalle);
