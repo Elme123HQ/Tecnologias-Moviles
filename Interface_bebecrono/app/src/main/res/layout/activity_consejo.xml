@@ -9,16 +9,88 @@
     tools:context=".Consejo">
 
     <TextView
-        android:id="@+id/consejoTextView"
+        android:id="@+id/tituloTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consejos de crianza de bebés"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consejo 1:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tituloTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@android:color/black"
-        android:text="Consejo de crianza de bebés"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/consejo1TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
+        android:paddingStart="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consejo 2:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/consejo1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/consejo2TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consejo 3:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/consejo2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"/>
+
+    <TextView
+        android:id="@+id/consejo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/consejo3TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

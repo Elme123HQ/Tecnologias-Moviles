@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "MainActivity";
 
-    EditText editTextUsername, editTextPassword;
-    Button buttonLogin, buttonGoogleLogin, buttonRegister, buttonForgotPassword;
+    EditText  editTextUsername, editTextPassword;
+
+    Button buttonLogin, buttonRegister, buttonForgotPassword;
     ImageView imageView;
 
     FirebaseAuth mAuth;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
-        buttonGoogleLogin = findViewById(R.id.buttonGoogleLogin);
+       // buttonGoogleLogin = findViewById(R.id.buttonGoogleLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
         buttonForgotPassword = findViewById(R.id.buttonForgotPassword);  // Nuevo botón
         imageView = findViewById(R.id.imageView);
@@ -77,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Configurar OnClickListener para el botón de ingresar con Google
-        buttonGoogleLogin.setOnClickListener(new View.OnClickListener() {
+        /*buttonGoogleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signInWithGoogle();
             }
         });
-
+*/
         // Configurar OnClickListener para el botón de registro
         buttonRegister.setOnClickListener(v -> startRegisterActivity());
 

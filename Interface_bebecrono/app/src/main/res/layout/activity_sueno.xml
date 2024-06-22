@@ -15,18 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingBottom="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Duración"
-        android:layout_marginTop="16dp" />
 
-    <EditText
-        android:id="@+id/editTextDuration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Duración del sueño (en horas)"
-        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,6 +42,19 @@
         android:layout_height="wrap_content"
         android:hint="HH:mm"
         android:inputType="time" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duración (minutos)"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duración del sueño (en minutos)"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/buttonRegisterSleep"

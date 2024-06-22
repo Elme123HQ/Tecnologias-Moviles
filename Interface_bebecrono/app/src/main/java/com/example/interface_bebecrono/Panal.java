@@ -82,7 +82,6 @@ public class Panal extends AppCompatActivity {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
-
         String userId = mAuth.getCurrentUser().getUid();
 
         Map<String, String> panalData = new HashMap<>();

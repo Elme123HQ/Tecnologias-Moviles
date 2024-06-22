@@ -20,20 +20,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cita"
+        android:text="Motivo de la Cita"
         android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/editTextCita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Agregar Cita"
+        android:hint="Cita"
         android:inputType="text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contacto"
+        android:text="Nombre y cargo del Contacto"
         android:layout_marginTop="16dp" />
 
     <EditText
@@ -46,14 +46,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ubicación"
+        android:text="Dirección"
         android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/editTextUbicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Agregar Ubicación"
+        android:hint="Agregar Ubicación y/o direccion"
         android:inputType="text" />
 
     <TextView

@@ -79,7 +79,7 @@ public class Alimentos extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSource.setAdapter(adapter);
 
-        // Añadir TextWatchers a los campos de entrada
+        // Añadir TextWatchers a lwos campos de entrada
         addTextWatchers();
 
         buttonSaveFood.setOnClickListener(v -> saveFoodData());

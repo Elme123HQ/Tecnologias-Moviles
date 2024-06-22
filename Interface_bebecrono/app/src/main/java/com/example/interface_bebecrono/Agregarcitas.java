@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -14,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +24,12 @@ public class Agregarcitas extends AppCompatActivity {
 
     private EditText editTextCita;
     private EditText editTextContacto;
-    private EditText editTextUbicacion;
+    private EditText editTextDireccion;
     private EditText editTextFecha;
     private EditText editTextNota;
     private Button buttonRegisterCita;
     private FirebaseFirestore mFirestore;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private String babyName;
 
     @Override
@@ -39,12 +41,12 @@ public class Agregarcitas extends AppCompatActivity {
         // Inicializar las vistas
         editTextCita = findViewById(R.id.editTextCita);
         editTextContacto = findViewById(R.id.editTextContacto);
-        editTextUbicacion = findViewById(R.id.editTextUbicacion);
+        editTextDireccion = findViewById(R.id.editTextUbicacion);
         editTextFecha = findViewById(R.id.editTextFecha);
         editTextNota = findViewById(R.id.editTextNota);
         buttonRegisterCita = findViewById(R.id.buttonRegisterCita);
 
-        // Inicializar Firestore
+        // Inicializar Firestore y Storage
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         babyName = getIntent().getStringExtra("BABY_NAME");
@@ -81,25 +83,29 @@ public class Agregarcitas extends AppCompatActivity {
     private void registerCita() {
         String cita = editTextCita.getText().toString();
         String contacto = editTextContacto.getText().toString();
-        String ubicacion = editTextUbicacion.getText().toString();
+        String direccion = editTextDireccion.getText().toString();
         String fecha = editTextFecha.getText().toString();
         String nota = editTextNota.getText().toString();
 
-        if (cita.isEmpty() || contacto.isEmpty() || ubicacion.isEmpty() || fecha.isEmpty() || nota.isEmpty()) {
+        if (cita.isEmpty() || contacto.isEmpty() || direccion.isEmpty() || fecha.isEmpty() || nota.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String userId = mAuth.getCurrentUser().getUid();
 
-        Map<String, String> citaData = new HashMap<>();
+        Map<String, Object> citaData = new HashMap<>();
         citaData.put("userId", userId);
         citaData.put("cita", cita);
         citaData.put("contacto", contacto);
-        citaData.put("ubicacion", ubicacion);
+        citaData.put("direccion", direccion);
         citaData.put("fecha", fecha);
         citaData.put("nota", nota);
 
+        saveCitaData(citaData);
+    }
+
+    private void saveCitaData(Map<String, Object> citaData) {
         mFirestore.collection("Registro de citas").add(citaData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(Agregarcitas.this, "Registro de cita guardado", Toast.LENGTH_SHORT).show();
@@ -111,3 +117,4 @@ public class Agregarcitas extends AppCompatActivity {
                 });
     }
 }
+
